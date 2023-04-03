@@ -5,12 +5,14 @@ package org.example;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.time.Duration;
 
-public class SeleniumIntroduction {
+public class AddDeleteUser {
     public static void main(String[] args) throws InterruptedException {
+
+    }
+    public void addDelUser(WebDriver driver) {
 
         String org = "DROUGAS";
         String orgUsername = "MDrougas";
@@ -27,23 +29,6 @@ public class SeleniumIntroduction {
         String userPassword = "medeco#2";
         String userPIN = "2314";
 
-        //BasicConfigurator.configure();//required for log4j to work
-
-        //invoke browser (Firefox)
-        System.setProperty("webdriver.gecko.driver" ,
-                "C:/Users/micdro/OneDrive/Programming/AutomatedTesting/drivers/geckodriver.exe");
-        WebDriver driver = new FirefoxDriver();
-
-        //Invoke Chrome
-        System.setProperty("webdriver.chrome.driver" ,
-                "C:/Users/micdro/OneDrive/Programming/AutomatedTesting/drivers/chromedriver.exe");
-        //WebDriver driver1 = new ChromeDriver();
-
-        //Microsoft Edge
-        System.setProperty("webdriver.edge.driver" ,
-                "C:/Users/micdro/OneDrive/Programming/AutomatedTesting/drivers/msedgedriver.exe");
-        //WebDriver driver2 = new EdgeDriver();
-
         driver.get("http://xtwlegacy.eedeco.com");
         String title = driver.getTitle();
 
@@ -59,7 +44,7 @@ public class SeleniumIntroduction {
                 "/html/body/div[1]/div[2]/form[2]/div[1]")).getText());
         System.out.println("\n\n\n\nHELLO");
 
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2)); //wait two seconds before running next step
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5)); //wait two seconds before running next step
         //Will fail if error message not found
         if (!(driver.findElement(By.xpath("/html/body/div[1]/div[2]/form[2]/div[1]")).isDisplayed()))
         {
@@ -90,16 +75,11 @@ public class SeleniumIntroduction {
         driver.findElement(By.cssSelector("#PinValue")).sendKeys(userPIN);
         driver.findElement(By.cssSelector(".btn")).click();
         driver.findElement(By.cssSelector(".dataTables_scrollHeadInner > table:nth-child(1) > thead:nth-child(1) > " +
-                "tr:nth-child(1) > th:nth-child(1) > span:nth-child(1) > input:nth-child(1)"))
+                        "tr:nth-child(1) > th:nth-child(1) > span:nth-child(1) > input:nth-child(1)"))
                 .sendKeys(userFirstName + " " + userLastName);
         driver.findElement(By.xpath("/html/body/div[1]/div[2]/div[3]/div[3]/div[2]/div[4]/div[2]/table" +
                 "/tbody/tr/td[5]/form/button")).click();
         Alert alertOK = driver.switchTo().alert();
         alertOK.accept();
-
-
-
-
-
     }
 }
