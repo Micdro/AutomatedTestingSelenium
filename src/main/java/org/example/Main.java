@@ -3,8 +3,10 @@ package org.example;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import java.io.IOException;
+
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         //invoke browser (Firefox)
         System.setProperty("webdriver.gecko.driver" ,
                 "C:/Users/micdro/OneDrive/Programming/AutomatedTesting/drivers/geckodriver.exe");
@@ -21,9 +23,8 @@ public class Main {
         //WebDriver driver2 = new EdgeDriver();
 
 
-        AddDeleteUser adu = new AddDeleteUser();
+        AddDeleteUser adu = new AddDeleteUser(driver);
         adu.addDelUser(driver);
-
 
     }
 }
